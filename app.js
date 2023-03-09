@@ -1,4 +1,5 @@
 import express from 'express';
+import db from './models/index.js';
 
 const app = express();
 const port = 3308;
@@ -15,6 +16,11 @@ app.get('/', (req, res) => {
 	res.send('hello!!');
 });
 
+db.sequelize
+	.sync()
+	.then(() => console.log('연결됨@'))
+	.catch((err) => console.error(err));
+
 app.listen(port, () => {
-	console.log('서버실행');
+	console.log('서버실행중...');
 });
