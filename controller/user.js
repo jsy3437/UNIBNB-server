@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import config from '../config/config.js';
 import * as userRepo from '../data/user.js';
 
 export async function signup(req, res) {
@@ -19,5 +21,11 @@ export async function signup(req, res) {
 		password: hashedPassword,
 	});
 
+	const token = jwt.sign(String(email), config.development.jwtSecret);
+	const expires = new Date(Date.now() + config.development.jwtExpires);
+	res.setHeader(
+		'Set-Cookie',
+		`access_token=${token};path=/expires=${expires.toUTCString()};httponly`
+	);
 	return res.status(201);
 }
