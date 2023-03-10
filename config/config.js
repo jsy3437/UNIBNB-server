@@ -9,6 +9,8 @@ const config = {
 		host: process.env.DB_HOST,
 		port: process.env.DB_PORT,
 		dialect: 'mariadb',
+		jwtSecret: process.env.JWT_SECRET,
+		jwtExpires: process.env.JWT_EXPIRES,
 	},
 };
 
