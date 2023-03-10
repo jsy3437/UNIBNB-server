@@ -1,20 +1,13 @@
 import express from 'express';
+import cors from 'cors';
 import db from './models/index.js';
 
 const app = express();
 const port = 3308;
 
-const corsUrl = 'http://localhost:3000/';
+const corsOptions = { origin: 'http://localhost:3000', credentials: true };
 
-app.get('/', (req, res) => {
-	const allowOption = req.rawHeaders.findIndex((url) => url === corsUrl);
-
-	if (allowOption) {
-		res.setHeader('Access-Control-Allow-origin', '*');
-	}
-
-	res.send('hello!!');
-});
+app.use(cors(corsOptions));
 
 db.sequelize
 	.sync()
