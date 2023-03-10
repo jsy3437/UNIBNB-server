@@ -14,11 +14,11 @@ export default class User extends Model {
 					type: DataTypes.STRING,
 					allowNull: false,
 				},
-				firstName: {
+				firstname: {
 					type: DataTypes.STRING,
 					allowNull: false,
 				},
-				lastName: {
+				lastname: {
 					type: DataTypes.STRING,
 					allowNull: false,
 				},
